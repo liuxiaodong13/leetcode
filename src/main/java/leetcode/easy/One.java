@@ -1,5 +1,7 @@
 package leetcode.easy;
 
+import com.sun.org.apache.xpath.internal.WhitespaceStrippingElementMatcher;
+
 public class One {
     public static void main(String[] args) {
 //        System.out.println(romanToInt("III"));
@@ -9,7 +11,7 @@ public class One {
 //        System.out.println(romanToInt("MCMXCIV"));
 
         //System.out.println(longestCommonPrefix(new String[]{"flower","flow","flight"}));
-        System.out.println(longestCommonPrefix(new String[]{"c","acc","ccc"}));
+        System.out.println(longestCommonPrefix(new String[]{"c", "acc", "ccc"}));
 
     }
 
@@ -31,12 +33,12 @@ public class One {
             }
             // 和上次的值比较大小
             if (i == 0 || romanNum <= lastNum) {
-                sum+=romanNum;
-            }else{
+                sum += romanNum;
+            } else {
                 // 相减
-                sum +=Math.abs(lastNum - romanNum);
+                sum += Math.abs(lastNum - romanNum);
                 // 减去多加的值
-                sum-=lastNum;
+                sum -= lastNum;
             }
             lastNum = romanNum;
         }
@@ -45,28 +47,23 @@ public class One {
 
     /**
      * 14. Longest Common Prefix
+     *
      * @param strs
      * @return
      */
     public static String longestCommonPrefix(String[] strs) {
         // 以第一个为样本
-        if (strs.length > 0) {
-            String sample = strs[0];
-            for (int i = 0; i < strs[0].length(); i++) {
-                int time = 0;
-                for (String element : strs) {
-                    if (element.startsWith(sample)) {
-                        time++;
-                    } else {
-                        break;
-                    }
-                }
-                if (time == strs.length) {
-                    return sample;
+        if (strs == null || strs.length == 0)
+            return "";
+        String sample = strs[0];
+        for (String str : strs) {
+            while (!str.startsWith(sample)) {
+                if (sample.length() == 1) {
+                    return "";
                 }
                 sample = sample.substring(0, sample.length() - 1);
             }
         }
-        return "";
+        return sample;
     }
 }
