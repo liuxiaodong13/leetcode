@@ -2,11 +2,15 @@ package leetcode.easy;
 
 public class One {
     public static void main(String[] args) {
-        System.out.println(romanToInt("III"));
-        System.out.println(romanToInt("IV"));
-        System.out.println(romanToInt("IX"));
-        System.out.println(romanToInt("LVIII"));
-        System.out.println(romanToInt("MCMXCIV"));
+//        System.out.println(romanToInt("III"));
+//        System.out.println(romanToInt("IV"));
+//        System.out.println(romanToInt("IX"));
+//        System.out.println(romanToInt("LVIII"));
+//        System.out.println(romanToInt("MCMXCIV"));
+
+        //System.out.println(longestCommonPrefix(new String[]{"flower","flow","flight"}));
+        System.out.println(longestCommonPrefix(new String[]{"c","acc","ccc"}));
+
     }
 
     public static int romanToInt(String s) {
@@ -37,5 +41,32 @@ public class One {
             lastNum = romanNum;
         }
         return sum;
+    }
+
+    /**
+     * 14. Longest Common Prefix
+     * @param strs
+     * @return
+     */
+    public static String longestCommonPrefix(String[] strs) {
+        // 以第一个为样本
+        if (strs.length > 0) {
+            String sample = strs[0];
+            for (int i = 0; i < strs[0].length(); i++) {
+                int time = 0;
+                for (String element : strs) {
+                    if (element.startsWith(sample)) {
+                        time++;
+                    } else {
+                        break;
+                    }
+                }
+                if (time == strs.length) {
+                    return sample;
+                }
+                sample = sample.substring(0, sample.length() - 1);
+            }
+        }
+        return "";
     }
 }
